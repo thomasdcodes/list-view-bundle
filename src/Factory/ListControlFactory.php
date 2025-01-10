@@ -4,12 +4,19 @@ declare(strict_types=1);
 
 namespace Tdc\ListViewBundle\Factory;
 
-use Symfony\Component\DependencyInjection\Attribute\AsAlias;
+use Symfony\Component\HttpFoundation\Request;
+use Tdc\ListViewBundle\Model\ListControl;
+use Tdc\ListViewBundle\Model\Paginator;
 
 /**
  * Creates a ListControl instance from request object
  */
 class ListControlFactory
 {
-
+    public static function createFromRequest(Request $request): ListControl
+    {
+        return new ListControl(
+            Paginator::createFromRequest($request),
+        );
+    }
 }

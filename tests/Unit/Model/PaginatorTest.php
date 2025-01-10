@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tdc\ListViewBundle\Tests\Unit\Model;
 
+use Symfony\Component\HttpFoundation\Request;
 use Tdc\ListViewBundle\Model\Paginator;
 use PHPUnit\Framework\TestCase;
 
@@ -63,5 +64,17 @@ class PaginatorTest extends TestCase
         $paginator->setTotal(1155);
         $paginator->setResultsPerPage(100);
         $this->assertSame(12, $paginator->numberOfPages());
+    }
+
+    public function testCanCreateInstanceFromRequest(): void
+    {
+        $request = new Request(['page' => 2, 'limit' => 200]);
+
+        $paginator = Paginator::createFromRequest($request);
+        $paginator->setTotal(1155);
+
+        $this->assertSame(200, $paginator->getResultsPerPage());
+        $this->assertSame(2, $paginator->getPage());
+        $this->assertSame(6, $paginator->numberOfPages());
     }
 }

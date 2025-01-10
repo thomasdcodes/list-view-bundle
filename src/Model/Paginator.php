@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tdc\ListViewBundle\Model;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class Paginator
 {
     private int $total = 0;
@@ -13,6 +15,14 @@ class Paginator
         private int $resultsPerPage = 200,
     )
     {
+    }
+
+    public static function createFromRequest(Request $request): Paginator
+    {
+        return new Paginator(
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 100),
+        );
     }
 
     public function getTotal(): int
@@ -55,6 +65,6 @@ class Paginator
 
     public function numberOfPages(): int
     {
-        return (int) ceil($this->total / $this->resultsPerPage);
+        return (int)ceil($this->total / $this->resultsPerPage);
     }
 }
