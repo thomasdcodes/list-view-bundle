@@ -66,6 +66,16 @@ class PaginatorTest extends TestCase
         $this->assertSame(12, $paginator->numberOfPages());
     }
 
+    public function testRoundingIsOnlyUp()
+    {
+        $paginator = new Paginator();
+
+        $paginator->setTotal(20);
+        $paginator->setResultsPerPage(11);
+
+        $this->assertSame(2, $paginator->numberOfPages());
+    }
+
     public function testCanCreateInstanceFromRequest(): void
     {
         $request = new Request(['page' => 2, 'limit' => 200]);

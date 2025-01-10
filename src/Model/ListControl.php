@@ -8,6 +8,7 @@ namespace Tdc\ListViewBundle\Model;
  * Dieses Model hält alle Informationen bereit, die für eine Listenansicht von belang sind:
  * Suche nach / Suchwort
  * OrderBy
+ * Filter
  * Paginator
  */
 readonly class ListControl
