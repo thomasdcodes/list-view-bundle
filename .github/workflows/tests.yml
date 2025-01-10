@@ -5,57 +5,40 @@ on:
     branches:
       - main
   pull_request:
+    branches:
+      - main
 
 jobs:
   test:
-    name: PHPUnit Tests
+    name: Run Tests
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-        options: >-
-          --health-cmd "mysqladmin ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 3
-        ports:
-          - 3306:3306
-
     steps:
-      # Checkout the code
+      # 1. Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up PHP
+      # 2. Set up PHP
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.3"
-          coverage: xdebug
+          php-version: 8.3
           tools: composer
+          coverage: xdebug
 
-      # Install dependencies
+      # 3. Install dependencies
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist
 
-      # Run PHPUnit tests with coverage
-      - name: Run tests
+      # 4. Run tests with coverage
+      - name: Run PHPUnit tests
         run: |
           mkdir -p build/logs
           vendor/bin/simple-phpunit --coverage-clover build/logs/coverage.xml
 
-      # Upload PHPUnit coverage report as artifacts
-      - name: Upload coverage for analysis
+      # 5. Upload test coverage report as an artifact
+      - name: Upload PHPUnit coverage
         uses: actions/upload-artifact@v3
         with:
           name: code-coverage
           path: build/logs/coverage.xml
-
-      # Display coverage to GitHub summary (optional step)
-      - name: Publish code coverage summary
-        uses: shivammathur/php-coverage@v2
-        with:
-          clover: build/logs/coverage.xml
