@@ -34,7 +34,7 @@ jobs:
       - name: Run PHPUnit tests
         run: |
           mkdir -p build/logs
-          vendor/bin/simple-phpunit --coverage-clover build/logs/coverage.xml
+          vendor/bin/phpunit --coverage-clover build/logs/coverage.xml
 
       # 5. Upload test coverage report as an artifact
       - name: Upload PHPUnit coverage
