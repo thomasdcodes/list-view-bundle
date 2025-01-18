@@ -10,6 +10,9 @@ use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 class ListViewBundle extends AbstractBundle
 {
+    /**
+     * @codeCoverageIgnore
+     */
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         $container->import('../config/services.yaml', 'yaml');

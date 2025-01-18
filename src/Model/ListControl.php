@@ -11,10 +11,10 @@ namespace Tdc\ListViewBundle\Model;
  * Filter
  * Paginator
  */
-readonly class ListControl
+class ListControl
 {
     public function __construct(
-        private Paginator $paginator,
+        private readonly Paginator $paginator,
     )
     {
     }

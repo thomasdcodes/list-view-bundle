@@ -23,6 +23,22 @@ public function __invoke(Request $request): JsonResponse
 ```
 
 ### Paginator
-Inside the ```ListControll``` Model, you can fetch the ```Paginator```. The ```Paginator``` will be setup behind the scenes with data comming from ```Request``` object. It uses the ```page``` and the ```limit``` quer parameter to get to life.
+Inside the ```ListControll``` Model, you can fetch the ```Paginator```. The ```Paginator``` will be setup behind the scenes with data coming from ```Request``` object. It uses the ```page``` and the ```limit``` query parameter to get to life.
 
-Now you loop the whole ```ListControl``` object through your querying process and set the number of total results onto the ```Paginator```. 
+Now you need to bring the whole ```ListControl``` object through your querying process and set the number of total results onto the ```Paginator```:
+
+```php
+// A Method inside your controller
+public function __invoke(): Response
+{
+    $listControl = ListControlFactory::createFromRequest(Request $request);
+    
+    // Make a query with your $listControl
+    $result = $this->personRepository->loadWithListControl($listControl);
+    
+    $listControl->getPaginator()->setTotal($result->numberOfResults());
+    
+    //………
+}
+
+```

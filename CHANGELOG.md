@@ -1,3 +1,6 @@
+## 0.3.1
+- Avoid readonly classes 
+
 ## 0.3.0
 - Added introduction in [README.md](README.md) 
 - Added CHANGELOG.md (this document)
