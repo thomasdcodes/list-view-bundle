@@ -1,3 +1,6 @@
+## 0.4.0
+- SearchTermOrganizer added to hold searchTerm inside ListControl
+
 ## 0.3.1
 - Avoid readonly classes 
 

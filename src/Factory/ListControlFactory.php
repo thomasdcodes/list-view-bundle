@@ -7,6 +7,7 @@ namespace Tdc\ListViewBundle\Factory;
 use Symfony\Component\HttpFoundation\Request;
 use Tdc\ListViewBundle\Model\ListControl;
 use Tdc\ListViewBundle\Model\Paginator;
+use Tdc\ListViewBundle\Model\SearchTermOrganizer;
 
 /**
  * Creates a ListControl instance from request object
@@ -17,6 +18,7 @@ class ListControlFactory
     {
         return new ListControl(
             Paginator::createFromRequest($request),
+            SearchTermOrganizer::createFromRequest($request)
         );
     }
 }
