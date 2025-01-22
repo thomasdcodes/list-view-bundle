@@ -1,3 +1,6 @@
+## 0.5.1
+- Added FilterOrganizer to ListControl
+
 ## 0.5.0
 - FilterOrganizer added to hold filters inside ListControl
 
