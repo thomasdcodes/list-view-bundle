@@ -1,3 +1,6 @@
+## 0.5.0
+- FilterOrganizer added to hold filters inside ListControl
+
 ## 0.4.0
 - SearchTermOrganizer added to hold searchTerm inside ListControl
 
