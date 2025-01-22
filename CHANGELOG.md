@@ -1,3 +1,6 @@
+## 0.7.0
+- Added ```SortOrganizer``` for managing sort
+
 ## 0.6.0
 - Changed dependencies, added metadata to composer
 

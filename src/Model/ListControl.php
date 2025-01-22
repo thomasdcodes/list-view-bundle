@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tdc\ListViewBundle\Model;
 
-use Tdc\ListViewBundle\Model\Filter\FilterInterface;
 use Tdc\ListViewBundle\Tests\Unit\Model\ListControlTest;
 
 /**
@@ -19,9 +18,10 @@ use Tdc\ListViewBundle\Tests\Unit\Model\ListControlTest;
 class ListControl
 {
     public function __construct(
-        private readonly Paginator $paginator,
+        private readonly Paginator           $paginator,
         private readonly SearchTermOrganizer $searchTermOrganizer,
-        private readonly FilterOrganizer $filterOrganizer,
+        private readonly FilterOrganizer     $filterOrganizer,
+        private readonly SortOrganizer       $sortOrganizer,
     )
     {
     }
@@ -39,5 +39,10 @@ class ListControl
     public function getFilterOrganizer(): FilterOrganizer
     {
         return $this->filterOrganizer;
+    }
+
+    public function getSortOrganizer(): SortOrganizer
+    {
+        return $this->sortOrganizer;
     }
 }

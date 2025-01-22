@@ -2,9 +2,9 @@
   "name": "thomasdcodes/list-view-bundle",
   "description": "A lightweight collection of entities for storing data of a listview.",
   "keywords": ["list view data management", "paginator data", "filter data", "search data", "sort data"],
-  "homepage": "https://github.com/thomasdcodes/list-view-bundle",
+  "homepage": "https://thomasd.codes",
   "type": "symfony-bundle",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "license": "MIT",
   "authors": [
     {

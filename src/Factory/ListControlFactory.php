@@ -9,6 +9,7 @@ use Tdc\ListViewBundle\Model\FilterOrganizer;
 use Tdc\ListViewBundle\Model\ListControl;
 use Tdc\ListViewBundle\Model\Paginator;
 use Tdc\ListViewBundle\Model\SearchTermOrganizer;
+use Tdc\ListViewBundle\Model\SortOrganizer;
 use Tdc\ListViewBundle\Tests\Unit\Factory\ListControlFactoryTest;
 
 /**
@@ -23,6 +24,7 @@ class ListControlFactory
             Paginator::createFromRequest($request),
             SearchTermOrganizer::createFromRequest($request),
             FilterOrganizer::createFromRequest($request),
+            SortOrganizer::createFromRequest($request),
         );
     }
 }

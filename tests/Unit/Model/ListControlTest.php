@@ -9,50 +9,54 @@ use Tdc\ListViewBundle\Model\FilterOrganizer;
 use Tdc\ListViewBundle\Model\ListControl;
 use Tdc\ListViewBundle\Model\Paginator;
 use Tdc\ListViewBundle\Model\SearchTermOrganizer;
+use Tdc\ListViewBundle\Model\SortOrganizer;
 
 class ListControlTest extends TestCase
 {
-    public function testCanInit():void
+    private ?Paginator $paginatorDouble = null;
+    private ?SearchTermOrganizer $searchTermOrganizerDouble = null;
+    private ?FilterOrganizer $filterOrganizerDouble = null;
+    private ?SortOrganizer $sortOrganizerDouble = null;
+
+    private ?ListControl $listControl = null;
+
+    protected function setUp(): void
     {
-        $paginatorDouble = $this->createStub(Paginator::class);
-        $searchTermOrganizerDouble = $this->createStub(SearchTermOrganizer::class);
-        $filterOrganizerDouble = $this->createStub(FilterOrganizer::class);
+        $this->paginatorDouble = $this->createStub(Paginator::class);
+        $this->searchTermOrganizerDouble = $this->createStub(SearchTermOrganizer::class);
+        $this->filterOrganizerDouble = $this->createStub(FilterOrganizer::class);
+        $this->sortOrganizerDouble = $this->createStub(SortOrganizer::class);
 
-        $listControl = new ListControl($paginatorDouble, $searchTermOrganizerDouble, $filterOrganizerDouble);
-
-        $this->assertInstanceOf(ListControl::class, $listControl);
+        $this->listControl = new ListControl(
+            $this->paginatorDouble,
+            $this->searchTermOrganizerDouble,
+            $this->filterOrganizerDouble,
+            $this->sortOrganizerDouble
+        );
     }
 
-    public function testCanGetPaginator():void
+    public function testCanInit(): void
     {
-        $paginatorDouble = $this->createStub(Paginator::class);
-        $searchTermOrganizerDouble = $this->createStub(SearchTermOrganizer::class);
-        $filterOrganizerDouble = $this->createStub(FilterOrganizer::class);
-
-        $listControl = new ListControl($paginatorDouble, $searchTermOrganizerDouble, $filterOrganizerDouble);
-
-        $this->assertSame($paginatorDouble, $listControl->getPaginator());
+        $this->assertInstanceOf(ListControl::class, $this->listControl);
     }
 
-    public function testCanGetSearchTermOrganizer():void
+    public function testCanGetPaginator(): void
     {
-        $paginatorDouble = $this->createStub(Paginator::class);
-        $searchTermOrganizerDouble = $this->createStub(SearchTermOrganizer::class);
-        $filterOrganizerDouble = $this->createStub(FilterOrganizer::class);
-
-        $listControl = new ListControl($paginatorDouble, $searchTermOrganizerDouble, $filterOrganizerDouble);
-
-        $this->assertSame($searchTermOrganizerDouble, $listControl->getSearchTermOrganizer());
+        $this->assertSame($this->paginatorDouble, $this->listControl->getPaginator());
     }
 
-    public function testCanGetFilterOrganizer():void
+    public function testCanGetSearchTermOrganizer(): void
     {
-        $paginatorDouble = $this->createStub(Paginator::class);
-        $searchTermOrganizerDouble = $this->createStub(SearchTermOrganizer::class);
-        $filterOrganizerDouble = $this->createStub(FilterOrganizer::class);
+        $this->assertSame($this->searchTermOrganizerDouble, $this->listControl->getSearchTermOrganizer());
+    }
 
-        $listControl = new ListControl($paginatorDouble, $searchTermOrganizerDouble, $filterOrganizerDouble);
+    public function testCanGetFilterOrganizer(): void
+    {
+        $this->assertSame($this->filterOrganizerDouble, $this->listControl->getFilterOrganizer());
+    }
 
-        $this->assertSame($filterOrganizerDouble, $listControl->getFilterOrganizer());
+    public function testCanGetSortOrganizer(): void
+    {
+        $this->assertSame($this->sortOrganizerDouble, $this->listControl->getSortOrganizer());
     }
 }

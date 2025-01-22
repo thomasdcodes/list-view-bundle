@@ -18,13 +18,13 @@ class FilterOrganizer
 {
     private array $filters = [];
 
-    public static function createFromRequest(Request $request)
+    public static function createFromRequest(Request $request): FilterOrganizer
     {
         $instance = new self();
 
         foreach ($request->query->all('filter') as $name => $value) {
             if (is_string($value)) {
-                $filter = SimpleFilter::create($value);;
+                $filter = SimpleFilter::create($value);
             } elseif (is_array($value)) {
                 $filter = RangeFilter::create(...$value);
             } else {
