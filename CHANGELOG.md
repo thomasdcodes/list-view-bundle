@@ -1,3 +1,6 @@
+## 0.6.0
+- Changed dependencies, added metadata to composer
+
 ## 0.5.1
 - Added FilterOrganizer to ListControl
 
